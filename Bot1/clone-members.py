@@ -1,18 +1,10 @@
-print ("")
-print ("++++++---++++++++++++---++++++++++++---++++++++++++---++++++++++++---++++++")
-print ("+  ____                                    ____ _           _    _         + ")
-print ("- / ___|  __ _ _ __ ___   ___  ___ _ __   / ___| |__   ___ | | _| |_   _   -  ")
-print ("+ \___ \ / _` | '_ ` _ \ / _ \/ _ \ '__| | |   | '_ \ / _ \| |/ / | | |    + ")
-print ("-  ___) | (_| | | | | | |  __/  __/ |    | |___| | | | (_) |   <| | |_| |  -  ")
-print ("+ |____/ \__,_|_| |_| |_|\___|\___|_|     \____|_| |_|\___/|_|\_\_|\__, |  +  ")
-print ("-                                                                  |___/   -  ")
-print ("++++++---++++++++++++---++++++++++++---++++++++++++---++++++++++++---++++++")
-print ("")
+print ("NGUYEN TUAN ANH")
+
+import csv
 
 from telethon.sync import TelegramClient
 from telethon.tl.functions.messages import GetDialogsRequest
 from telethon.tl.types import InputPeerEmpty
-import csv
 
 api_id = 6305419 #Enter Your 7 Digit Telegram API ID.
 api_hash = 'e48908e1e2c1cd9f1db222ce809f268e'   #Enter Yor 32 Character API Hash

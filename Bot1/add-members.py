@@ -1,25 +1,18 @@
-print ("")
-print ("++++++---++++++++++++---++++++++++++---++++++++++++---++++++++++++---++++++")
-print ("+  ____                                    ____ _           _    _         + ")
-print ("- / ___|  __ _ _ __ ___   ___  ___ _ __   / ___| |__   ___ | | _| |_   _   -  ")
-print ("+ \___ \ / _` | '_ ` _ \ / _ \/ _ \ '__| | |   | '_ \ / _ \| |/ / | | |    + ")
-print ("-  ___) | (_| | | | | | |  __/  __/ |    | |___| | | | (_) |   <| | |_| |  -  ")
-print ("+ |____/ \__,_|_| |_| |_|\___|\___|_|     \____|_| |_|\___/|_|\_\_|\__, |  +  ")
-print ("-                                                                  |___/   -  ")
-print ("++++++---++++++++++++---++++++++++++---++++++++++++---++++++++++++---++++++")
-print ("")
+print ("NGUYEN TUAN ANH")
 
-from telethon.sync import TelegramClient
-from telethon.tl.functions.messages import GetDialogsRequest
-from telethon.tl.types import InputPeerEmpty, InputPeerChannel, InputPeerUser
-from telethon.errors.rpcerrorlist import PeerFloodError, UserPrivacyRestrictedError
-from telethon.tl.functions.channels import InviteToChannelRequest
-import sys
-import csv  
-import traceback
-import time
+import csv
 import random
+import sys
+import time
+import traceback
+
 import pandas as pd
+from telethon.errors.rpcerrorlist import (PeerFloodError,
+                                          UserPrivacyRestrictedError)
+from telethon.sync import TelegramClient
+from telethon.tl.functions.channels import InviteToChannelRequest
+from telethon.tl.functions.messages import GetDialogsRequest
+from telethon.tl.types import InputPeerChannel, InputPeerEmpty, InputPeerUser
 
 api_id = 6305419                           #enter here api_id 6305419
 api_hash = 'e48908e1e2c1cd9f1db222ce809f268e' #Enter here api_hash id e48908e1e2c1cd9f1db222ce809f268e

@@ -1,28 +1,32 @@
-print ("")
-print ("++++++---++++++++++++---++++++++++++---++++++++++++---++++++++++++---++++++")
-print ("+  ____                                    ____ _           _    _         + ")
-print ("- / ___|  __ _ _ __ ___   ___  ___ _ __   / ___| |__   ___ | | _| |_   _   -  ")
-print ("+ \___ \ / _` | '_ ` _ \ / _ \/ _ \ '__| | |   | '_ \ / _ \| |/ / | | |    + ")
-print ("-  ___) | (_| | | | | | |  __/  __/ |    | |___| | | | (_) |   <| | |_| |  -  ")
-print ("+ |____/ \__,_|_| |_| |_|\___|\___|_|     \____|_| |_|\___/|_|\_\_|\__, |  +  ")
-print ("-                                                                  |___/   -  ")
-print ("++++++---++++++++++++---++++++++++++---++++++++++++---++++++++++++---++++++")
-print ("")
+print ("NGUYEN TUAN ANH")
 
-from os import waitpid
 import asyncio
-from telethon.sync import TelegramClient
-from telethon.tl.functions.messages import GetDialogsRequest
-from telethon.tl.types import InputPeerEmpty, InputPeerChannel, InputPeerUser, ChannelParticipantsSearch
-from telethon.errors.rpcerrorlist import PeerFloodError, UserPrivacyRestrictedError, FloodWaitError, UsernameNotOccupiedError, UserChannelsTooMuchError, PhoneNumberBannedError, UsernameInvalidError, UserNotMutualContactError, UserBannedInChannelError, UserDeactivatedBanError, ChannelPrivateError, AuthKeyDuplicatedError
-from telethon.tl.functions.channels import InviteToChannelRequest, GetParticipantsRequest
-import sys
 import csv
-import traceback
-import time
 import random
-import socks
+import sys
+import time
+import traceback
+from os import waitpid
+
 import pandas as pd
+import socks
+from telethon.errors.rpcerrorlist import (AuthKeyDuplicatedError,
+                                          ChannelPrivateError, FloodWaitError,
+                                          PeerFloodError,
+                                          PhoneNumberBannedError,
+                                          UserBannedInChannelError,
+                                          UserChannelsTooMuchError,
+                                          UserDeactivatedBanError,
+                                          UsernameInvalidError,
+                                          UsernameNotOccupiedError,
+                                          UserNotMutualContactError,
+                                          UserPrivacyRestrictedError)
+from telethon.sync import TelegramClient
+from telethon.tl.functions.channels import (GetParticipantsRequest,
+                                            InviteToChannelRequest)
+from telethon.tl.functions.messages import GetDialogsRequest
+from telethon.tl.types import (ChannelParticipantsSearch, InputPeerChannel,
+                               InputPeerEmpty, InputPeerUser)
 
 dataAPIs = []
 allDataAPI = []
