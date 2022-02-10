@@ -3,14 +3,12 @@ print ("NGUYEN TUAN ANH")
 import csv
 
 from telethon.sync import TelegramClient
-from telethon.tl.functions.contacts import ResolveUsernameRequest
 from telethon.tl.functions.messages import GetDialogsRequest
 from telethon.tl.types import InputPeerEmpty
 
-#6305419,e48908e1e2c1cd9f1db222ce809f268e,+84 377200557
-api_id = 8487818 #Enter Your 7 Digit Telegram API ID. 6052768
-api_hash = 'f7d32017b6954f9d342df1d474b56c12'   #Enter Yor 32 Character API Hash 904a955db8c7e2e02ac76299015a29ce
-phone = '+84 364416627'   #Enter Your Mobilr Number With Country Code.776941851
+api_id = 6305419 #Enter Your 7 Digit Telegram API ID.
+api_hash = 'e48908e1e2c1cd9f1db222ce809f268e'   #Enter Yor 32 Character API Hash
+phone = '+84 377200557'   #Enter Your Mobilr Number With Country Code.
 client = TelegramClient(phone, api_id, api_hash)
 async def main():
     # Now you can use all client methods listed below, like for example...
@@ -57,9 +55,9 @@ all_participants = []
 all_participants = client.get_participants(target_group, aggressive=True)
 
 print('Saving In file...')
-with open("Scrapped.csv","w",encoding='UTF-8') as f:#Enter your file name.
+with open("Allmembers.csv","w",encoding='UTF-8') as f:#Enter your file name.
     writer = csv.writer(f,delimiter=",",lineterminator="\n")
-    writer.writerow(['username','user_id', 'access_hash','name','group', 'group_id'])
+    writer.writerow(['username','user_id', 'access_hash','name','group', 'group_id','added'])
     for user in all_participants:
         if user.username:
             username= user.username
@@ -74,6 +72,5 @@ with open("Scrapped.csv","w",encoding='UTF-8') as f:#Enter your file name.
         else:
             last_name= ""
         name= (first_name + ' ' + last_name).strip()
-        if username != '':
-            writer.writerow([username,user.id,user.access_hash,name,target_group.title, target_group.id])
+        writer.writerow([username,user.id,user.access_hash,name,target_group.title, target_group.id,''])
 print('Members scraped successfully.......')

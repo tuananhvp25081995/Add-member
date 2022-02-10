@@ -1,3 +1,4 @@
+
 print ("")
 print ("++++++---++++++++++++---++++++++++++---++++++++++++---++++++++++++---++++++")
 print ("+  ____                                    ____ _           _    _         + ")
@@ -9,20 +10,23 @@ print ("-                                                                  |___/
 print ("++++++---++++++++++++---++++++++++++---++++++++++++---++++++++++++---++++++")
 print ("")
 
+import csv
+import time
+
+from telethon import errors
 from telethon.sync import TelegramClient
 from telethon.tl.functions.messages import GetDialogsRequest
 from telethon.tl.types import InputPeerEmpty
-import csv
 
-api_id = 8478563 #Enter Your 7 Digit Telegram API ID.
-api_hash = 'e9d113b394fde91263a93fe25149e1s2'   #Enter Yor 32 Character API Hash
-phone = '+84 589820761'   #Enter Your Mobilr Number With Country Code.
-client = TelegramClient(phone, api_id, api_hash)
+api_id = 17689891 #Enter Your 7 Digit Telegram API ID.
+api_hash = 'fa93937e18d10ddb95441ad7cbb2813d'   #Enter Yor 32 Character API Hash
+phone = '+84 973475967'   #Enter Your Mobilr Number With Country Code.
+proxy = ('http', '176.88.6.235', 8080, True)
+client = TelegramClient(phone, api_id, api_hash,proxy=proxy, connection_retries=0, auto_reconnect=True)
 async def main():
     # Now you can use all client methods listed below, like for example...
-    await client.send_message('me', 'Hello !!!!')
-with client:
-    client.loop.run_until_complete(main())
+    with client:
+        client.loop.run_until_complete(main())
 client.connect()
 if not client.is_user_authorized():
     client.send_code_request(phone)
@@ -61,7 +65,10 @@ target_group=groups[int(g_index)]
 
 print('Fetching Members...')
 all_participants = []
-all_participants = client.get_participants(target_group, aggressive=True)
+try:
+    all_participants = client.get_participants(target_group, aggressive=True)
+except errors.FloodWaitError as e:
+    print('Flood wait for ', e.seconds)
 
 print('Saving In file...')
 with open("Scrapped.csv","w",encoding='UTF-8') as f:#Enter your file name.
