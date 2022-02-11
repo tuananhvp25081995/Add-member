@@ -1,4 +1,5 @@
 import csv
+from csv import DictWriter
 from time import sleep
 
 from telethon.sync import TelegramClient
@@ -68,23 +69,58 @@ while True:
     all_participants.extend(participants.users)
     offset += len(participants.users)
     sleep(5)
-with open("Scrapped.csv","w",encoding='UTF-8') as f:#Enter your file name.
-    writer = csv.writer(f,delimiter=",",lineterminator="\n")
-    writer.writerow(['username','user_id', 'access_hash','name'])
-    for user in all_participants:
-        if user.username:
-            username= user.username
-        else:
-            username= ""
-        if user.first_name:
-            first_name= user.first_name
-        else:
-            first_name= ""
-        if user.last_name:
-            last_name= user.last_name
-        else:
-            last_name= ""
-        name= (first_name + ' ' + last_name).strip()
-        if username != '':
-            writer.writerow([username,user.id,user.access_hash,name])
-print('Members scraped successfully.......')
+# with open("Scrapped.csv","w",encoding='UTF-8') as f:#Enter your file name.
+#     writer = csv.writer(f,delimiter=",",lineterminator="\n")
+#     writer.writerow(['username','user_id', 'access_hash','name'])
+#     for user in all_participants:
+#         if user.username:
+#             username= user.username
+#         else:
+#             username= ""
+#         if user.first_name:
+#             first_name= user.first_name
+#         else:
+#             first_name= ""
+#         if user.last_name:
+#             last_name= user.last_name
+#         else:
+#             last_name= ""
+#         name= (first_name + ' ' + last_name).strip()
+#         if username != '':
+#             writer.writerow([username,user.id,user.access_hash,name])
+# print('Members scraped successfully.......')
+
+
+
+field_names = ['username','user_id','access_hash','name']
+
+# Dictionary
+# Open your CSV file in append mode
+# Create a file object for this file
+allDataMembers = []
+with open('Myaccount.csv', "r", newline="") as f_object:
+    reader = csv.reader(f_object)
+    for row in reader:
+        dataProxy = {}
+        dataProxy['username']  =  row
+        allDataMembers.append(dataProxy)
+doubleUser = []
+with open('Myaccount.csv', 'a', encoding='UTF-8') as f_object:        
+    for member in allDataMembers:
+        for user in all_participants:
+            if user.username and user.username != '' and member['username'][0] == user.username:
+                doubleUser.append(member['username'][0])
+                continue
+            else:
+                continue
+    if len(doubleUser) == 0:
+        dict={'username':6,'user_id':'William','access_hash':5532,'name':1}
+        # Pass the file object and a list
+        # of column names to DictWriter()
+        # You will get a object of DictWriter
+        dictwriter_object = DictWriter(f_object, fieldnames=field_names,lineterminator="\n")
+        # #Pass the dictionary as an argument to the Writerow()
+        # print(dict)
+        dictwriter_object.writerow(dict)
+        # #Close the file object
+        f_object.close()

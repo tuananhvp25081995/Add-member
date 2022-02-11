@@ -1,26 +1,52 @@
-from time import sleep
+# import csv
+# from csv import DictWriter
 
-from telethon.sync import TelegramClient
-from telethon.tl.functions.channels import GetParticipantsRequest
-from telethon.tl.types import ChannelParticipantsSearch
+import numpy as np
 
-api_id = 17689891 #Enter Your 7 Digit Telegram API ID.
-api_hash = 'fa93937e18d10ddb95441ad7cbb2813d'   #Enter Yor 32 Character API Hash
-phone = '+84 973475967'   #Enter Your Mobilr Number With Country Code.
-proxy = ('http', '176.88.6.235', 8080, True)
-client = TelegramClient(phone, api_id, api_hash)
+# # list of column names 
+# field_names = ['ID','NAME','RANK','ARTICLE','COUNTRY']
 
-offset = 0
-limit = 100
-all_participants = []
+# # Dictionary
+# # dict={'ID':6,'NAME':'William','RANK':5532,'ARTICLE':1,'COUNTRY':'UAE'}
+# # Open your CSV file in append mode
+# # Create a file object for this file
+# allDataMembers = []
+# with open('event.csv', "r", newline="") as f_object:
+#     reader = csv.reader(f_object)
+#     for row in reader:
+#         print(row)
+#         dataProxy = {}
+#         dataProxy['ID']  =  row
+#         allDataMembers.append(dataProxy)
+# doubleUser = []
+# with open('event.csv', 'a', encoding='UTF-8') as f_object:        
+#     # for member in allDataMembers:
+#     np_array = np.array(allDataMembers)
+#     print(np_array)
+    # item = 6
+    # item_index = np.where(np_array==item)
+    # print(len(item_index[0]))
+        # print(member)
+        # if member['ID'][0] == '6':
+        #     doubleUser.append(member['ID'][0])
+        #     continue
+        # else:
+        #     continue
+#     if len(doubleUser) == 0:
+#         dict={'ID':6,'NAME':'William','RANK':5532,'ARTICLE':1,'COUNTRY':'UAE'}
+#         # Pass the file object and a list
+#         # of column names to DictWriter()
+#         # You will get a object of DictWriter
+#         dictwriter_object = DictWriter(f_object, fieldnames=field_names,lineterminator="\n")
+#         # #Pass the dictionary as an argument to the Writerow()
+#         # print(dict)
+#         dictwriter_object.writerow(dict)
+#         # #Close the file object
+#         f_object.close()
 
-while True:
-    participants = client(GetParticipantsRequest(
-         ChannelParticipantsSearch(''), offset, limit,
-        hash=0
-    ))
-    if not participants.users:
-        break
-    all_participants.extend(participants.users)
-    offset += len(participants.users)
-print(all_participants)
+array = [1, 2, 1, 3, 4, 5, 1]
+item = 6
+np_array = np.array(array)
+print(np_array)
+item_index = np.where(np_array==item)
+# Out: (array([0, 2, 6], dtype=int64),)
