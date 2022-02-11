@@ -109,8 +109,6 @@ for dataAPI in allDataAPI:
             user['user_id'] = int(row[1])
             user['access_hash'] = int(row[2])
             user['name'] = row[3]
-            user['group'] = row[4]
-            user['group_id'] = row[5]
             users.append(user)
     chats = []
     last_date = None

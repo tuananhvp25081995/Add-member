@@ -33,7 +33,7 @@ allDataAPI = []
 dataProxys = []
 allDataProxy = []
 
-with open("proxy.csv", encoding='UTF-8') as f:  #Enter your file name
+with open("Proxy.csv", encoding='UTF-8') as f:  #Enter your file name
     rowss = csv.reader(f,delimiter=",",lineterminator="\n")
     next(rowss, None)
     for row in rowss:
@@ -68,25 +68,25 @@ for dataAPI in allDataAPI:
     # proxy = (socks.SOCKS5, '27.66.252.76', 1080, True)
     client = TelegramClient(phone, api_id, api_hash, proxy=proxy, connection_retries=0, auto_reconnect=True)
     # try:
-    #     url = "proxy.csv"
+    #     url = "Proxy.csv"
     #     df = pd.read_csv(url)
     #     df = df.drop([0])
-    #     df.to_csv("proxy.csv", index=False)
+    #     df.to_csv("Proxy.csv", index=False)
     #     client.start()
     # except OSError:
-    #     # url = "proxy.csv"
+    #     # url = "Proxy.csv"
     #     # df = pd.read_csv(url)
     #     # df = df.drop([0])
-    #     # df.to_csv("proxy.csv", index=False)
+    #     # df.to_csv("Proxy.csv", index=False)
     #     continue
 
     # async def main():
         # Now you can use all client methods listed below, like for example...
     try:
-        # url = "proxy.csv"
+        # url = "Proxy.csv"
         # df = pd.read_csv(url)
         # df = df.drop([0])
-        # df.to_csv("proxy.csv", index=False)
+        # df.to_csv("Proxy.csv", index=False)
         client.connect()
     except OSError:
         indexP+=1
@@ -99,7 +99,7 @@ for dataAPI in allDataAPI:
 
     users = []
     allUser = []
-    with open("Scrapped.csv", encoding='UTF-8') as f:  #Enter your file name
+    with open("Allmembers.csv", encoding='UTF-8') as f:  #Enter your file name
         rows = csv.reader(f,delimiter=",",lineterminator="\n")
         next(rows, None)
         for row in rows:
@@ -109,8 +109,6 @@ for dataAPI in allDataAPI:
             user['user_id'] = int(row[1])
             user['access_hash'] = int(row[2])
             user['name'] = row[3]
-            user['group'] = row[4]
-            user['group_id'] = row[5]
             users.append(user)
     chats = []
     last_date = None
@@ -187,10 +185,10 @@ for dataAPI in allDataAPI:
             break
         if participants.users:
             indexUser = 0
-            url = "Scrapped.csv"
+            url = "Allmembers.csv"
             df = pd.read_csv(url)
             df = df.drop([indexUser])
-            df.to_csv("Scrapped.csv", index=False)
+            df.to_csv("Allmembers.csv", index=False)
             print("The user is already in the group...")
             time.sleep(random.randrange(1, 2))
             continue
@@ -208,10 +206,10 @@ for dataAPI in allDataAPI:
                     sys.exit("Invalid Mode Selected. Please Try Again.")
                 client(InviteToChannelRequest(target_group_entity, [user_to_add]))
 
-                url = "Scrapped.csv"
+                url = "Allmembers.csv"
                 df = pd.read_csv(url)
                 df = df.drop([indexUser])
-                df.to_csv("Scrapped.csv", index=False)
+                df.to_csv("Allmembers.csv", index=False)
 
                 print("Waiting for 60-90 Seconds...")
                 time.sleep(random.randrange(60, 70))
@@ -222,16 +220,16 @@ for dataAPI in allDataAPI:
                 time.sleep(random.randrange(1, 2))
                 if n < 5:
                     indexUser = 0
-                    url = "Scrapped.csv"
+                    url = "Allmembers.csv"
                     df = pd.read_csv(url)
                     df = df.drop([indexUser])
-                    df.to_csv("Scrapped.csv", index=False)
+                    df.to_csv("Allmembers.csv", index=False)
                     continue
                 else:
-                    # url = "proxy.csv"
+                    # url = "Proxy.csv"
                     # df = pd.read_csv(url)
                     # df = df.drop([0])
-                    # df.to_csv("proxy.csv", index=False)
+                    # df.to_csv("Proxy.csv", index=False)
                     indexP+=1
                     client.disconnect()
                     break
@@ -242,87 +240,87 @@ for dataAPI in allDataAPI:
                 time.sleep(random.randrange(1, 2))
                 if n < 5:
                     indexUser = 0
-                    url = "Scrapped.csv"
+                    url = "Allmembers.csv"
                     df = pd.read_csv(url)
                     df = df.drop([indexUser])
-                    df.to_csv("Scrapped.csv", index=False)
+                    df.to_csv("Allmembers.csv", index=False)
                     continue
                 else:
-                    # url = "proxy.csv"
+                    # url = "Proxy.csv"
                     # df = pd.read_csv(url)
                     # df = df.drop([0])
-                    # df.to_csv("proxy.csv", index=False)
+                    # df.to_csv("Proxy.csv", index=False)
                     indexP+=1
                     client.disconnect()
                     break
             except UserPrivacyRestrictedError:
                 print("The user's privacy settings do not allow you to do this. Skipping.")
                 indexUser = 0
-                url = "Scrapped.csv"
+                url = "Allmembers.csv"
                 df = pd.read_csv(url)
                 df = df.drop([indexUser])
-                df.to_csv("Scrapped.csv", index=False)
+                df.to_csv("Allmembers.csv", index=False)
 
                 print("Waiting for 1 Seconds...")
                 time.sleep(random.randrange(1, 2))
                 continue
             except UsernameNotOccupiedError:
                 indexUser = 0
-                url = "Scrapped.csv"
+                url = "Allmembers.csv"
                 df = pd.read_csv(url)
                 df = df.drop([indexUser])
-                df.to_csv("Scrapped.csv", index=False)
+                df.to_csv("Allmembers.csv", index=False)
                 print("UsernameNotOccupiedError Waiting for 1 Seconds...")
                 time.sleep(random.randrange(1, 2))
                 continue
             except UserChannelsTooMuchError:
                 indexUser = 0
-                url = "Scrapped.csv"
+                url = "Allmembers.csv"
                 df = pd.read_csv(url)
                 df = df.drop([indexUser])
-                df.to_csv("Scrapped.csv", index=False)
+                df.to_csv("Allmembers.csv", index=False)
                 print("UserChannelsTooMuchError Waiting for 1 Seconds...")
                 time.sleep(random.randrange(1, 2))
                 continue
             except UsernameInvalidError:
                 indexUser = 0
-                url = "Scrapped.csv"
+                url = "Allmembers.csv"
                 df = pd.read_csv(url)
                 df = df.drop([indexUser])
-                df.to_csv("Scrapped.csv", index=False)
+                df.to_csv("Allmembers.csv", index=False)
                 print("UsernameInvalidError Waiting for 1 Seconds...")
                 time.sleep(random.randrange(1, 2))
                 continue
             except UserNotMutualContactError:
                 indexUser = 0
-                url = "Scrapped.csv"
+                url = "Allmembers.csv"
                 df = pd.read_csv(url)
                 df = df.drop([indexUser])
-                df.to_csv("Scrapped.csv", index=False)
+                df.to_csv("Allmembers.csv", index=False)
                 print("UserNotMutualContactError Waiting for 1 Seconds...")
                 time.sleep(random.randrange(1, 2))
                 continue
             except UserBannedInChannelError:
                 indexUser = 0
-                url = "Scrapped.csv"
+                url = "Allmembers.csv"
                 df = pd.read_csv(url)
                 df = df.drop([indexUser])
-                df.to_csv("Scrapped.csv", index=False)
+                df.to_csv("Allmembers.csv", index=False)
                 print("UserBannedInChannelError Waiting for 1 Seconds...")
                 time.sleep(random.randrange(1, 2))
                 indexP+=1
                 client.disconnect()
                 break    
             except UserDeactivatedBanError:
-                # urls = "proxy.csv"
+                # urls = "Proxy.csv"
                 # df = pd.read_csv(urls)
                 # df = df.drop([0])
-                # df.to_csv("proxy.csv", index=False)
+                # df.to_csv("Proxy.csv", index=False)
                 indexUser = 0
-                url = "Scrapped.csv"
+                url = "Allmembers.csv"
                 df = pd.read_csv(url)
                 df = df.drop([indexUser])
-                df.to_csv("Scrapped.csv", index=False)
+                df.to_csv("Allmembers.csv", index=False)
                 print("UserDeactivatedBanError Waiting for 1 Seconds...")
                 time.sleep(random.randrange(1, 2))
                 indexP+=1
@@ -335,10 +333,10 @@ for dataAPI in allDataAPI:
                 client.disconnect()
                 break
             except PhoneNumberBannedError:
-                # url = "proxy.csv"
+                # url = "Proxy.csv"
                 # df = pd.read_csv(url)
                 # df = df.drop([0])
-                # df.to_csv("proxy.csv", index=False)
+                # df.to_csv("Proxy.csv", index=False)
                 # indexApi = dataAPIs.index([str(dataAPI['api_id']),str(dataAPI['api_hash']),str(dataAPI['phone'])])
                 # urls = "Apikey.csv"
                 # df = pd.read_csv(urls)
@@ -350,25 +348,25 @@ for dataAPI in allDataAPI:
                 client.disconnect()
                 break
             except ChannelPrivateError:
-                # url = "proxy.csv"
+                # url = "Proxy.csv"
                 # df = pd.read_csv(url)
                 # df = df.drop([0])
-                # df.to_csv("proxy.csv", index=False)
+                # df.to_csv("Proxy.csv", index=False)
                 print("The channel specified is private and you lack permission to access it. Another reason may be that you were banned from it")
                 indexP+=1
                 client.disconnect()
                 break
             except:
-                #indexUser = allUser.index([str(user['username']),str(user['user_id']),str(user['access_hash']),str(user['name']),str(user['group']),str(user['group_id'])])url = "proxy.csv"
-                # urls = "proxy.csv"
+                #indexUser = allUser.index([str(user['username']),str(user['user_id']),str(user['access_hash']),str(user['name']),str(user['group']),str(user['group_id'])])url = "Proxy.csv"
+                # urls = "Proxy.csv"
                 # df = pd.read_csv(urls)
                 # df = df.drop([0])
-                # df.to_csv("proxy.csv", index=False)
+                # df.to_csv("Proxy.csv", index=False)
                 indexUser = 0
-                url = "Scrapped.csv"
+                url = "Allmembers.csv"
                 df = pd.read_csv(url)
                 df = df.drop([indexUser])
-                df.to_csv("Scrapped.csv", index=False)
+                df.to_csv("Allmembers.csv", index=False)
                 print("Unexpected Error")
                 print("Waiting for 1 Seconds...")
                 time.sleep(random.randrange(1, 2))
