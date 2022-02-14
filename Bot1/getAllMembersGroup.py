@@ -1,7 +1,9 @@
 print ("NGUYEN TUAN ANH")
 
 import csv
+from csv import DictWriter
 
+import numpy as np
 from telethon import errors
 from telethon.sync import TelegramClient
 from telethon.tl.functions.messages import GetDialogsRequest
@@ -59,23 +61,34 @@ except errors.FloodWaitError as e:
     print('Flood wait for', e.seconds)
 
 print('Saving In file...')
-with open("Allmembers.csv","w",encoding='UTF-8') as f:#Enter your file name.
-    writer = csv.writer(f,delimiter=",",lineterminator="\n")
-    writer.writerow(['username','user_id', 'access_hash','name'])
+field_names = ['username','user_id','access_hash','name']
+
+# Dictionary
+# Open your CSV file in append mode
+# Create a file object for this file
+allDataMembers = []
+doubleUser = []
+with open('Myaccount.csv', "r", newline="") as f_object:
+    reader = csv.reader(f_object)
+    for row in reader:
+        dataProxy = {}
+        dataProxy['username']  =  row
+        allDataMembers.append(dataProxy)
+for user in allDataMembers:
+    doubleUser.append(user['username'][0])
+np_array = np.array(doubleUser)
+with open('Myaccount.csv', 'a', encoding='UTF-8') as f_object:
     for user in all_participants:
-        if user.username:
-            username= user.username
-        else:
-            username= ""
-        if user.first_name:
-            first_name= user.first_name
-        else:
-            first_name= ""
-        if user.last_name:
-            last_name= user.last_name
-        else:
-            last_name= ""
-        name= (first_name + ' ' + last_name).strip()
-        if username != '':
-            writer.writerow([username,user.id,user.access_hash,name])
+        if user.username and user.username != '':
+            item_index = np.where(np_array==user.username)
+            if len(item_index[0]) == 0:
+                dict={'username':user.username,'user_id':user.id,'access_hash':user.access_hash,'name':target_group.title}
+                # Pass the file object and a list
+                # of column names to DictWriter()
+                # You will get a object of DictWriter
+                dictwriter_object = DictWriter(f_object, fieldnames=field_names,lineterminator="\n")
+                # #Pass the dictionary as an argument to the Writerow()
+                dictwriter_object.writerow(dict)
+                # #Close the file object
+                # f_object.close()
 print('Members scraped successfully.......')
